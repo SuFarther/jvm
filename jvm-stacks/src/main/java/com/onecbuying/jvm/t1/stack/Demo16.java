@@ -9,6 +9,8 @@ package com.onecbuying.jvm.t1.stack;
  * 1、用top定位哪个进程对cpu的占用过高
  * 2、ps H -eo pid,tid,%cpu | grep 进程id (用ps命令进一步定位是哪个线程引起的cpu占用过高)
  * 3、jstack 进程id
+ *
+ * 进程演算为16进制的nid
  * @createTime 2022年08月14日 17:41:41
  */
 public class Demo16 {

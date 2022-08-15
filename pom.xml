@@ -14,8 +14,8 @@
   <description>jvm超级全的知识讲解</description>
 
   <properties>
-    <maven.compiler.source>8</maven.compiler.source>
-    <maven.compiler.target>8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>4.13.2</junit.version>
     <jackson-annotations.version>2.13.3</jackson-annotations.version>
@@ -29,4 +29,6 @@
 
     </dependencies>
   </dependencyManagement>
+
+
 </project>

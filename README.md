@@ -367,10 +367,11 @@ StringTable_intern_1.8
  - JDK1.8开始，取消了Java方法区，取而代之的是位于直接内存的元空间（metaSpace）。
 
 JDK1.6 与 JDK1.8字符串常量池对比
-![字符串常量池对比](img/JDK1.6%20与%20JDK1.8字符串常量池对比.png)
+![字符串常量池对比](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy83SVFQQ2J1bVRqbmpGVE1pY0xnUnl2QlJrRWY1WEJadFQyeTIyUTdPUnVtSUg0ckRFV3ppY1A5ZlpaSjJlaWNkcERxclVLNEdwbFZlTFl5TlVscmJ0M2pTQS82NDA?x-oss-process=image/format,png)
+
 ##### 5.7.1 JDK1.8 字符串常量池在堆中实例验证
 <font color="#f33b45" size="3">代码参考： com.jvm.t03_metaspace.T07_StringTablePosition</font>
-![JDK1.8 字符串常量池在堆中实例验证](img/JDK1.6 与 JDK1.8字符串常量池对比2.png)
+![JDK1.8 字符串常量池在堆中实例验证](https://github.com/SuFarther/images/blob/master/JDK1.6%20%E4%B8%8E%20JDK1.8%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%AF%B9%E6%AF%942.png)
 
 
 #### 5.8 StringTable垃圾回收

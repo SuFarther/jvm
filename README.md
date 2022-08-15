@@ -367,10 +367,10 @@ StringTable_intern_1.8
  - JDK1.8开始，取消了Java方法区，取而代之的是位于直接内存的元空间（metaSpace）。
 
 JDK1.6 与 JDK1.8字符串常量池对比
-![字符串常量池对比](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy83SVFQQ2J1bVRqbmpGVE1pY0xnUnl2QlJrRWY1WEJadFQyeTIyUTdPUnVtSUg0ckRFV3ppY1A5ZlpaSjJlaWNkcERxclVLNEdwbFZlTFl5TlVscmJ0M2pTQS82NDA?x-oss-process=image/format,png)
+![字符串常量池对比](img/JDK1.6%20与%20JDK1.8字符串常量池对比.png)
 ##### 5.7.1 JDK1.8 字符串常量池在堆中实例验证
 <font color="#f33b45" size="3">代码参考： com.jvm.t03_metaspace.T07_StringTablePosition</font>
-![JDK1.8 字符串常量池在堆中实例验证](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy83SVFQQ2J1bVRqbmpGVE1pY0xnUnl2QlJrRWY1WEJadFRWNHJLNUNMSlhzelBkN0RpY0EzeERubGx5RHM2U1pTQWlhR2hpY09laGJ0TmY3VmRrQlBLYVRqTncvNjQw?x-oss-process=image/format,png)
+![JDK1.8 字符串常量池在堆中实例验证](img/JDK1.6 与 JDK1.8字符串常量池对比2.png)
 
 
 #### 5.8 StringTable垃圾回收
@@ -406,11 +406,11 @@ public class T08_StringTableGc {
  - 考虑将字符串对象是否入池
 
 ##### <font color="#f33b45">5.9.1 使用-XX:StringTableSize=大小参数增加桶的数量使StringTable性能增加案例</font>
-| 序号  | StringTableSize大小	 |    运行耗时（单位毫秒） |
-|:----|:------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| 1   |        1009        | 11444<img alt="" height="22" src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xbG9nby5jbi9tbWJpel9wbmcvN0lRUENidW1Uam5qRlRNaWNMZ1J5dkJSa0VmNVhCWnRUODNnTXB5Zzk3b1lMZ29Td1NRS21yM2xYQTFvZWdUbmc3Z0h6Q1AxTFlsaWF0dnRyUVBBUVpMUS8w?x-oss-process=image/format,png" width="22"> |
-| 2   |       10009        |  1765 <img alt="" height="21" src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xbG9nby5jbi9tbWJpel9wbmcvN0lRUENidW1Uam5qRlRNaWNMZ1J5dkJSa0VmNVhCWnRUbXRVaWF0cTdYbzFZQ2ZpYzhoNGlhaWFZRmFmaGx4dWRxTXRnNmlhSXlRczJGcHg3Y0xpYXpvTGo1cUlRLzA?x-oss-process=image/format,png" width="21"> |
-| 3   |      100009	     |  430 <img alt="" height="20" src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xbG9nby5jbi9tbWJpel9wbmcvN0lRUENidW1Uam5qRlRNaWNMZ1J5dkJSa0VmNVhCWnRUTkFTaWJoMEpWUDNld2lhY0dSRUV6QlRRMlBMRmJXZjl3c1ZUbkhWNUFuaHBLbFVKUFk4WkZmVWcvMA?x-oss-process=image/format,png" width="20"> |
+| 序号  | StringTableSize大小	 |                                                                                                                                                                                                                                                                              运行耗时（单位毫秒） |
+|:----|:------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| 1   |        1009        | 11444 <img alt="" height="22" src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xbG9nby5jbi9tbWJpel9wbmcvN0lRUENidW1Uam5qRlRNaWNMZ1J5dkJSa0VmNVhCWnRUODNnTXB5Zzk3b1lMZ29Td1NRS21yM2xYQTFvZWdUbmc3Z0h6Q1AxTFlsaWF0dnRyUVBBUVpMUS8w?x-oss-process=image/format,png" width="22"> |
+| 2   |       10009        | 1765 <img alt="" height="21" src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xbG9nby5jbi9tbWJpel9wbmcvN0lRUENidW1Uam5qRlRNaWNMZ1J5dkJSa0VmNVhCWnRUbXRVaWF0cTdYbzFZQ2ZpYzhoNGlhaWFZRmFmaGx4dWRxTXRnNmlhSXlRczJGcHg3Y0xpYXpvTGo1cUlRLzA?x-oss-process=image/format,png" width="21"> |
+| 3   |      100009	     |       430 <img alt="" height="20" src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xbG9nby5jbi9tbWJpel9wbmcvN0lRUENidW1Uam5qRlRNaWNMZ1J5dkJSa0VmNVhCWnRUTkFTaWJoMEpWUDNld2lhY0dSRUV6QlRRMlBMRmJXZjl3c1ZUbkhWNUFuaHBLbFVKUFk4WkZmVWcvMA?x-oss-process=image/format,png" width="20"> |
 
 
 ##### 5.9.2 使用字符串常量池对字符串较多的场景减少内存占用案例

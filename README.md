@@ -41,13 +41,13 @@ Java Virtual Machine - java程序的运行环境（java二进制字节码的运�
  > Program Counter Register程序计数器（寄存器）
 
 #### 1.2 程序计数器作用
-<p style="font-size: 16px"><font style="font-weight: bold">作用:</font> 是记住下一条jvm指令的执行地址</p>
+<font size="3" >**作用:** 是记住下一条jvm指令的执行地址</font>
 
-<p style="font-size: 16px"><font style="font-weight: bold">特点:</font> <font color="#f33b45">线程私有的； 不存在内存溢出，也是JVM规范中唯一没有OutOfMemoryError的区域</font></p>
+<font size="3" >**特点:** <font color="#f33b45">线程私有的； 不存在内存溢出，也是JVM规范中唯一没有OutOfMemoryError的区域</font></font>
 
-<p style="font-size: 16px"><font style="font-weight: bold">二进制字节码: </font> JVM指令 —>  解释器  —> 机器码 —> CPU</p>
+<font size="3" >**二进制字节码:** JVM指令 —>  解释器  —> 机器码 —> CPU</font>
 
-<p style="font-size: 16px"><font style="font-weight: bold">程序计数器：</font> 记住下一条jvm指令的执行地址，硬件方面通过【寄存器】实现</p>
+<font size="3" >**程序计数器**  记住下一条jvm指令的执行地址，硬件方面通过【寄存器】实现</font>
 
 示例： 二进制字节码：jvm指令       java 源代码
 ![二进制字节码](https://img-blog.csdnimg.cn/20200730203706398.png)

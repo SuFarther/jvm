@@ -86,8 +86,8 @@ Java Virtual Machine Stacks (Java虚拟机栈)
 ![用top定位哪个进程对cpu的占用过高](https://img-blog.csdnimg.cn/20200730204732769.png)
 <font color="#f33b45" size="3">2. ps H -eo pid,tid,%cpu     查看linux所有进程、线程、CPU消耗情况</font>
 ![ 查看linux所有进程、线程、CPU消耗情况](https://img-blog.csdnimg.cn/20200730204847966.png)
-<font color="#f33b45" size="3">3. ps H -eo pid,tid,%cpu | grep 进程id    用ps命令进一步定位哪个线程引起的CPU占用过高</font>
-![用ps命令进一步定位哪个线程引起的CPU占用过高](https://img-blog.csdnimg.cn/20200730204926135.png)
+<font color="#f33b45" size="3">3. ps H -eo pid,tid,%cpu | grep 进程id    用ps命令进一步定位哪个线程引起的CPU占用过高</font><br/>
+![用ps命令进一步定位哪个线程引起的CPU占用过高](https://img-blog.csdnimg.cn/20200730204926135.png)<br/>
 <font color="#f33b45" size="3">4. jstack 进程pid        需要将十进制的线程id转成16进制; 可以根据线程id找到有问题的线程，进一步定位问题代码的源码行号</font>
 ![需要将十进制的线程id转成16进制; 可以根据线程id找到有问题的线程，进一步定位问题代码的源码行号](https://img-blog.csdnimg.cn/20200730205019222.png)
 <font color="#f33b45" size="3">通过上述方式找到了源代码CPU消耗过高的文件及行号</font>

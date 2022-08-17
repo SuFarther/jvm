@@ -11,6 +11,7 @@ import java.util.List;
  * @Description 演示 StringTable 位置
  * 在jdk8下设置 -Xmx10m -XX:-UseGCOverheadLimit
  * 在jdk6下设置 -XX:MaxPermSize=10m
+ * JDK1.6串池(StringTable)用的是永久代
  * @createTime 2022年08月16日 22:12:12
  */
 public class Demo6 {

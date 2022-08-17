@@ -9,7 +9,7 @@ package com.onecbuying.jvm.t1.heap;
  *   jps工具：查看当前系统中有哪些java进程
  *   jmap工具：查看堆内存占用情况 jmap -heap pid
  *   jstack 工具：线程监控
- *   jconsole工具：图形界面的，多功能的检测工具，可以连续监测
+ *   jconsole工具：图形界面的，多功能的检测工具，可以连续监测2
  *  jvisualvm工具：图形界面的，多功能的检测工具，可以连续监测；还有dump
  *  @createTime 2022年08月14日 20:14:14
  */

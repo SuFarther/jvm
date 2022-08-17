@@ -7,11 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jvm-stacks</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>jvm8</artifactId>
 
-    <name>jvm-stacks</name>
-    <description>栈内存的分析</description>
+    <name>jvm8</name>
+    <description>jvm8版本的并发</description>
 
 
     <properties>

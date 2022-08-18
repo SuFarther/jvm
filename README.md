@@ -466,7 +466,89 @@ public class T09_StringTableSizeForPerformance {
 - 普通内存
   - 需要从用户态向内核态申请资源，即内核态会创建一块直接内存direct memory，这块direct memory内存可以在用户态、内核态使用。
   
-<font color="#87cefa" size="3">通常使用内存（未使用直接内存） VS 直接内存，原理对比图</font>
+<font color="#87cefa" size="3">通常使用内存（未使用直接内存） VS 直接内存，原理对比图</font><br />
+文件读写流程
+![未使用直接内存](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150715.png)
+使用了DirectBuffer
+![直接内存](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150736.png)
+直接内存是操作系统和Java代码都可以访问的一块区域，无需将代码从系统内存复制到Java堆内存，从而提高了效率
+##### 6.2.1 释放原理
+<font size="3">直接内存的回收不是通过JVM的垃圾回收来释放的，而是通过**unsafe.freeMemory**来手动释放</font>
+```
+//通过ByteBuffer申请1M的直接内存
+ByteBuffer byteBuffer = ByteBuffer.allocateDirect(_1M);
+```
+<font size="3">申请直接内存，但JVM并不能回收直接内存中的内容，它是如何实现回收的呢？</font>
+**allocateDirect的实现**
+```
+public static ByteBuffer allocateDirect(int capacity) {
+    return new DirectByteBuffer(capacity);
+}
+```
+DirectByteBuffer类
+```
+DirectByteBuffer(int cap) {   // package-private
+   
+    super(-1, 0, cap, cap);
+    boolean pa = VM.isDirectMemoryPageAligned();
+    int ps = Bits.pageSize();
+    long size = Math.max(1L, (long)cap + (pa ? ps : 0));
+    Bits.reserveMemory(size, cap);
+
+    long base = 0;
+    try {
+        base = unsafe.allocateMemory(size); //申请内存
+    } catch (OutOfMemoryError x) {
+        Bits.unreserveMemory(size, cap);
+        throw x;
+    }
+    unsafe.setMemory(base, size, (byte) 0);
+    if (pa && (base % ps != 0)) {
+        // Round up to page boundary
+        address = base + ps - (base & (ps - 1));
+    } else {
+        address = base;
+    }
+    cleaner = Cleaner.create(this, new Deallocator(base, size, cap)); //通过虚引用，来实现直接内存的释放，this为虚引用的实际对象
+    att = null;
+}
+```
+<font size="3" >这里调用了一个Cleaner的create方法，且后台线程还会对虚引用的对象监测，如果虚引用的实际对象（这里是DirectByteBuffer）被回收以后，就会调用Cleaner的clean方法，来清除直接内存中占用的内存</font>
+```
+public void clean() {
+       if (remove(this)) {
+           try {
+               this.thunk.run(); //调用run方法
+           } catch (final Throwable var2) {
+               AccessController.doPrivileged(new PrivilegedAction<Void>() {
+                   public Void run() {
+                       if (System.err != null) {
+                           (new Error("Cleaner terminated abnormally", var2)).printStackTrace();
+                       }
+
+                       System.exit(1);
+                       return null;
+                   }
+               });
+           }
+```
+<font size="3" >对应对象的run方法</font>
+```
+public void run() {
+    if (address == 0) {
+        // Paranoia
+        return;
+    }
+    unsafe.freeMemory(address); //释放直接内存中占用的内存
+    address = 0;
+    Bits.unreserveMemory(size, capacity);
+}
+```
+<font size="3" >**直接内存的回收机制总结**</font>
+ - 使用了Unsafe类来完成直接内存的分配回收，回收需要主动调用freeMemory方法
+ - ByteBuffer的实现内部使用了Cleaner（虚引用）来检测ByteBuffer。一旦ByteBuffer被垃圾回收，那么会由ReferenceHandler来调用Cleaner的clean方法调用freeMemory来释放内存
+
+
 #### 6.3 直接内存与传统方式读取大文件耗时对比案例
 <font size="3">接下来，我们将对一个大约1.29G大小的视频文件进行读取并写入指定文件中，即复制。代码如下：</font>
 ```
@@ -644,3 +726,6 @@ public class T04_DirectMemoryGcByUnsafe {
     }
 }
 ```
+
+###  7、垃圾回收
+#### 7.11

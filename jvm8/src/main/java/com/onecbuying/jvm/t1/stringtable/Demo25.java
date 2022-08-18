@@ -29,6 +29,7 @@ public class Demo25 {
                 long start = System.nanoTime();
                 while (true) {
                     line = reader.readLine();
+
                     if(line == null) {
                         break;
                     }

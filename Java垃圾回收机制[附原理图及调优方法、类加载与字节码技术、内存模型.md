@@ -95,6 +95,7 @@ public class Demo1 {
  - 容易产生大量的内存碎片，可能无法满足大对象的内存分配，一旦导致无法分配对象，那就会导致jvm启动gc，一旦启动gc，我们的应用程序就会暂停，这就导致应用的响应速度变慢
 
 #### 2.2 标记整理
+![标记整理](images/垃圾回收/20200608150827.png)
 ![标记整理](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150827.png)
 ![标记整理](https://img-blog.csdnimg.cn/20200806094219177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zMjI2NTU2OQ==,size_16,color_FFFFFF,t_70)
 #####  **定义:** Mark Compact<br/>

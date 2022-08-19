@@ -82,7 +82,8 @@ public class Demo1 {
     ![四种引用：强、软、弱、虚引用](https://img-blog.csdnimg.cn/20200806225631692.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zMjI2NTU2OQ==,size_16,color_FFFFFF,t_70)
 ### 2、垃圾回收算法
 #### 2.1 标记清除
-![标记清除](images/垃圾回收/20200608150813.png)
+[//]: # (![标记清除]&#40;images/垃圾回收/20200608150813.png&#41;)
+![标记清除](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150813.png)
 ![标记清除](https://img-blog.csdnimg.cn/202008060940251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zMjI2NTU2OQ==,size_16,color_FFFFFF,t_70)
 #####  **定义:** Mark Sweep
 标记清除算法顾名思义，是指在虚拟机执行垃圾回收的过程中，先采用标记算法确定可回收对象，然后垃圾收集器根据标识清除相应的内容，给堆内存腾出相应的空间
@@ -157,10 +158,14 @@ Minor GC 会将**伊甸园和幸存区FROM**存活的对象先复制到 **幸存
 #### 3.3 相关JVM参数
 ![分代垃圾回收](images/垃圾回收/相关JVM参数.png)
 ### 4、垃圾回收器
-#### 4.1 串行
-#### 4.2 吞吐量优先
-#### 4.3 响应时间优先
-#### 4.4 G1 垃圾回收器
+#### 4.1 相关概念
+##### **并行收集：** 指多条垃圾收集线程并行工作，但此时用户线程仍处于等待状态。
+#####
+#####
+#### 4.2 串行
+#### 4.3 吞吐量优先
+#### 4.4 响应时间优先
+#### 4.5 G1 垃圾回收器
 ### 5、垃圾回收调优
 #### 5.1 调优领域
 #### 5.2 确定目标5.2 确定目标

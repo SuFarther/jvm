@@ -96,7 +96,9 @@ public class Demo1 {
  - 容易产生大量的内存碎片，可能无法满足大对象的内存分配，一旦导致无法分配对象，那就会导致jvm启动gc，一旦启动gc，我们的应用程序就会暂停，这就导致应用的响应速度变慢
 
 #### 2.2 标记整理
-![标记整理](images/垃圾回收/20200608150827.png)
+
+[//]: # (![标记整理]&#40;images/垃圾回收/20200608150827.png&#41;)
+![标记整理](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150827.png)
 ![标记整理](https://img-blog.csdnimg.cn/20200806094219177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zMjI2NTU2OQ==,size_16,color_FFFFFF,t_70)
 #####  **定义:** Mark Compact
 ##### **描述:** 
@@ -106,10 +108,18 @@ public class Demo1 {
 - 速度慢
 - 没有内存碎片
 #### 2.3 复制
-![复制](images/垃圾回收/20200608150842.png)
-![复制](images/垃圾回收/20200608150856.png)
-![复制](images/垃圾回收/20200608150907.png)
-![复制](images/垃圾回收/20200608150919.png)
+
+[//]: # (![复制]&#40;images/垃圾回收/20200608150842.png&#41;)
+![复制](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150842.png)
+
+[//]: # (![复制]&#40;images/垃圾回收/20200608150856.png&#41;)
+![复制](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150856.png)
+
+[//]: # (![复制]&#40;images/垃圾回收/20200608150907.png&#41;)
+![复制](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150907.png)
+
+[//]: # (![复制]&#40;images/垃圾回收/20200608150919.png&#41;)
+![复制](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150919.png)
 #####  **定义:** Copy
 ##### **描述:**
 - 将内存分为等大小的两个区域，FROM和TO（TO中为空）。先将被GC Root引用的对象从FROM放入TO中，再回收不被GC Root引用的对象。然后交换FROM和TO。这样也可以避免内存碎片的问题，但是会占用双倍的内存空间。
@@ -120,7 +130,8 @@ public class Demo1 {
 **优点**：自带整理功能，这样不会产生大量不连续的内存空间，适合年轻代垃圾回收。
 ![复制](https://img-blog.csdnimg.cn/2020080609464756.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zMjI2NTU2OQ==,size_16,color_FFFFFF,t_70)
 ### 3、分代垃圾回收
-![分代垃圾回收](images/垃圾回收/20200608150931.png)
+[//]: # (![分代垃圾回收]&#40;images/垃圾回收/20200608150931.png&#41;)
+![分代垃圾回收](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150931.png)
 当前商业虚拟机的垃圾收集都采用分代收集。此算法没啥新鲜的，就是将上述三种算法整合了一下。具体如下：
 根据各个年代的特点采取最适当的收集算法：
 1. 在新生代中，每次垃圾收集时候都发现有大批对象死去，只有少量存活，那就选用复制算法。只需要付出少量存活对象的复制成本就可以完成收集。
@@ -133,18 +144,28 @@ public class Demo1 {
   - 当老年代空间不足，会先尝试触发minor gc，如果之后空间仍不足，那么触发full gc，STW的时间更长
 #### 3.1 回收流程
 新创建的对象都被放在了**新生代的伊甸园**中
-![分代垃圾回收](images/垃圾回收/20200608150939.png)
+[//]: # (![回收流程]&#40;images/垃圾回收/20200608150939.png&#41;)
+![分代垃圾回收](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150946.png)
 当伊甸园中的内存不足时，就会进行一次垃圾回收，这时的回收叫做 **Minor GC**
 Minor GC 会将**伊甸园和幸存区FROM**存活的对象先复制到 **幸存区** TO中，
 并让其**寿命加1**，再交换两个幸存区
-![分代垃圾回收](images/垃圾回收/20200608150946.png)
-![分代垃圾回收](images/垃圾回收/20200608150955.png)
-![分代垃圾回收](images/垃圾回收/20200608151002.png)
+![回收流程](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150946.png)
+
+[//]: # (![回收流程]&#40;images/垃圾回收/20200608150946.png&#41;)
+![回收流程](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150955.png)
+
+[//]: # (![回收流程]&#40;images/垃圾回收/20200608150955.png&#41;)
+[//]: # (![回收流程]&#40;images/垃圾回收/20200608151002.png&#41;)
+![回收流程](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608151002.png)
 再次创建对象，若新生代的伊甸园又满了，则会**再次触发** Minor GC（会触发 **stop the world**， 暂停其他用户线程，只让垃圾
 回收线程工作），这时不仅会回收伊甸园中的垃圾，**还会回收幸存区中的垃圾**，再将活跃对象复制到幸存区TO中。回收以后会交换两个幸存区，并让幸存区中的对象**寿命加1**
-![分代垃圾回收](images/垃圾回收/20200608151010.png)
+![回收流程](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608151010.png)
+
+[//]: # (![分代垃圾回收]&#40;images/垃圾回收/20200608151010.png&#41;)
 如果幸存区中的对象的**寿命超过某个阈值**（最大为15，4bit），就会被放入老年代中
-![分代垃圾回收](images/垃圾回收/20200608151018.png)
+
+[//]: # (![分代垃圾回收]&#40;images/垃圾回收/20200608151018.png&#41;)
+![回收流程](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608151018.png)
 如果新生代老年代中的内存都满了，就会先触发Minor GC，再触发Full GC，扫描新生代和老年代中所有不再使用的对象并回收
 
 #### 3.2 GC 分析

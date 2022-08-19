@@ -727,5 +727,3 @@ public class T04_DirectMemoryGcByUnsafe {
 }
 ```
 
-###  7、垃圾回收
-#### 7.11

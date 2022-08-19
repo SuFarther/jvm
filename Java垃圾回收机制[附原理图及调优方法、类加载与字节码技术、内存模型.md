@@ -144,6 +144,7 @@ public class Demo1 {
   - 当老年代空间不足，会先尝试触发minor gc，如果之后空间仍不足，那么触发full gc，STW的时间更长
 #### 3.1 回收流程
 新创建的对象都被放在了**新生代的伊甸园**中
+
 [//]: # (![回收流程]&#40;images/垃圾回收/20200608150939.png&#41;)
 ![分代垃圾回收](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608150946.png)
 当伊甸园中的内存不足时，就会进行一次垃圾回收，这时的回收叫做 **Minor GC**

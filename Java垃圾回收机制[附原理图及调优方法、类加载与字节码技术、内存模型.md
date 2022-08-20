@@ -314,7 +314,7 @@ public class T01_Gc_Demo01 {
   - 2009JDK 6u14体验
   - 2012 JDK 7u4官方支持
   - <font color="#f33b45">2017 JDK 9默认，同时废弃了CMS垃圾回收</font>
-    ![G1收集器](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200909201212.png)
+    ![G1收集器](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200909201212.png)    
 #####  适用场景
    - 同时注重<font color="#f33b45">吞吐量（Throughput）和低延迟（Low latency）</font>，默认的暂停目标是200ms
    - <font color="#f33b45">超大堆内存</font>，会将堆划分为多个大小相等的Region (区域)

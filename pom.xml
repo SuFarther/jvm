@@ -8,6 +8,7 @@
   <modules>
     <module>jvm8</module>
       <module>jvm6</module>
+      <module>jmh</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -22,6 +23,8 @@
     <jackson-annotations.version>2.13.3</jackson-annotations.version>
     <jackson-core.version>2.13.3</jackson-core.version>
     <jackson-databind.version>2.13.3</jackson-databind.version>
+    <jmh-core.version>1.35</jmh-core.version>
+    <jmh-generator-annprocess.version>1.35</jmh-generator-annprocess.version>
   </properties>
 
   <!-- 对子项目进行版本管理-->
